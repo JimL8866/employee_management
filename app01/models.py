@@ -1,11 +1,10 @@
 from django.db import models
 
-# Create your models here.
 class Department(models.Model):
     """
     department table
     """
-    title = models.CharField(verbose_name="title of Dep", max_length=32)
+    name = models.CharField(verbose_name="title of Dep", max_length=32)
     
     
 

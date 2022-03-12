@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'plugins\bootstrap-3.4.1\css\bootstrap.min.css' %}" />
+    <script src="https://kit.fontawesome.com/e270e14442.js" crossorigin="anonymous"></script>
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">GREEN BULL EMPLOYEE MANAGEMENT</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/dep/list">Department Management</a></li>
+                    <li><a href="/user/list">User Management</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Login</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">User Info</a></li>
+                            <li><a href="#">User Profie</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        <div class="container">
+            <div style="margin-bottom: 10px;">
+                <a class="btn btn-success" href="#">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Create New Department</a>
+            </div>
+
+            <div>
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">
+                            <i class="fa-solid fa-list"></i>
+                            Department List</div>
+
+                        <!-- Table -->
+                        <table class="table table-bordered" >
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Operate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>1</th>
+                                    <td>Mark</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-xs " href="#">edit</a>
+                                        <a class="btn btn-danger btn-xs " href="#">delete</a>
+                                    </td>
+      
+                                </tr>
+                       
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <script src="{% static 'js\jquery-3.6.0.min.js' %}"></script>
+
+                <script src="{% static 'plugins\bootstrap-3.4.1\js\bootstrap.min.js' %}"></script>
+</body>
+
+</html>

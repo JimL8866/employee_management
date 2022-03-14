@@ -86,8 +86,8 @@
                                     <th>{{item.id}}</th>
                                     <td>{{item.name}}</td>
                                     <td>
-                                        <a class="btn btn-primary btn-xs " href="#">edit</a>
-                                        <a class="btn btn-danger btn-xs " href="/dep/delete/?nid={{ item.id }}">delete</a>
+                                        <a class="btn btn-primary btn-xs " href="/dep/{{item.id}}/edit/" target="_blank">edit</a>
+                                        <a class="btn btn-danger btn-xs " href="/dep/delete/?nid={{ item.id }}/">delete</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

@@ -11,26 +11,22 @@
         <div class="panel-body">
             <form action="/user/add/" method="post">
                 {% csrf_token %}
-                <div class="form-group">
+                {% comment %} <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" class="form-control"
-                        placeholder="First Name" name="f_name">       
+                    <input type="text" class="form-control" placeholder="First Name" name="f_name">
                 </div>
 
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control"
-                        placeholder="Last Name" name="l_name">       
+                    <input type="text" class="form-control" placeholder="Last Name" name="l_name">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control"
-                        placeholder="Password" name="pwd">       
+                    <input type="text" class="form-control" placeholder="Password" name="pwd">
                 </div>
                 <div class="form-group">
                     <label>Age</label>
-                    <input type="text" class="form-control"
-                        placeholder="Age" name="age">       
+                    <input type="text" class="form-control" placeholder="Age" name="age">
                 </div>
                 <div class="form-group">
                     <label>Gender</label>
@@ -38,17 +34,16 @@
                         {% for item in gender_choices %}
                         <option value="{{item.0}}">{{item.1}}</option>
                         {% endfor %}
-                    </select>      
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Account</label>
-                    <input type="text" class="form-control"
-                        placeholder="Account" name="acc">       
+                    <input type="text" class="form-control" placeholder="Account" name="acc">
                 </div>
                 <div class="form-group">
                     <label>Date of Create</label>
-                    <input type="text" class="form-control"
-                        placeholder="Date of Create and in YYYY-MM-DD Format!" name="date">       
+                    <input type="text" class="form-control" placeholder="Date of Create and in YYYY-MM-DD Format!"
+                        name="date">
                 </div>
                 <div class="form-group">
                     <label>Department</label>
@@ -56,8 +51,16 @@
                         {% for item in department %}
                         <option value="{{item.id}}">{{item.name}}</option>
                         {% endfor %}
-                    </select>       
+                    </select>
+                </div> {% endcomment %}
+
+                {% for field in form %}
+                <div class="form-group">
+                    <b>{{field.label}}</b> : {{field}}
                 </div>
+                {% endfor %}
+                <br>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
@@ -69,4 +72,4 @@
 
 
 
-{% endblock%}
+    {% endblock%}

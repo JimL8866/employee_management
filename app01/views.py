@@ -1,3 +1,5 @@
+from django import forms
+from django.forms import ModelForm
 from django.shortcuts import render, HttpResponse, redirect
 from app01 import models
 
@@ -57,37 +59,61 @@ def user_list(request):
     #get all user_list
     
     queryset = models.EmployeeInfo.objects.all()
-    # print(queryset)
-    # for obj in queryset:
-    #     print(obj.id, obj.f_name, obj.l_name,obj.create_time.strftime("%Y-%m-%d"), obj.age, obj.account,obj.get_gender_display(),obj.dep.name)
     
     return render(request, "user_list.html", {"queryset":queryset})
 
-def user_add(request):
 
-    if request.method == "GET":
+# def user_add(request):
+
+#     if request.method == "GET":
         
-       context = {
+#         context = {
            
-           "gender_choices" : models.EmployeeInfo.gender_choices,
+#            "gender_choices" : models.EmployeeInfo.gender_choices,
            
-           "department" : models.Department.objects.all()
-       }
+#            "department" : models.Department.objects.all()
+#        }
         
-       return render(request, "user_add.html", context)
+#         return render(request, "user_add.html", context)
    
-    #get user data
+#     #get user data
     
-    f_name = request.POST.get("f_name")
-    l_name = request.POST.get("l_name")
-    pwd = request.POST.get("pwd")
-    age= request.POST.get("age")
-    gender = request.POST.get("gender")
-    acc = request.POST.get("acc")
-    date = request.POST.get("date")
-    dep = request.POST.get("dep")
+#     f_name = request.POST.get("f_name")
+#     l_name = request.POST.get("l_name")
+#     pwd = request.POST.get("pwd")
+#     age= request.POST.get("age")
+#     gender = request.POST.get("gender")
+#     acc = request.POST.get("acc")
+#     date = request.POST.get("date")
+#     dep = request.POST.get("dep")
     
-    models.EmployeeInfo.objects.create(f_name=f_name, l_name=l_name,password=pwd, 
-                                       age=age,gender=gender,account=acc, 
-                                       create_time=date,dep_id=dep)
-    return redirect("/user/list")
+#     models.EmployeeInfo.objects.create(f_name=f_name, l_name=l_name,password=pwd, 
+#                                        age=age,gender=gender,account=acc, 
+#                                        create_time=date,dep_id=dep)
+#     return redirect("/user/list")
+
+class MyForm(ModelForm):
+    class Meta:
+        model = models.EmployeeInfo
+        fields = ["f_name","l_name","password", "age", "account", "create_time", "dep", "gender"]
+        # widgets ={
+        #     "f_name":forms.TextInput(attrs={"class":"form-control", "placeholder":"Default"}),
+        #     "l_name":forms.TextInput(attrs={"class":"form-control"}),
+        #     "password":forms.PasswordInput(attrs={"class":"form-control"}),
+        # }
+        
+    def __init__(self, *args, **kargs):
+        super().__init__(*args,**kargs)
+        
+        for name, field in self.fields.items():
+            print(name, field)
+            field.widget.attrs = {"class":"form-control", "placeholder":field.label}
+            
+
+
+def user_add(request):
+    
+    if request.method == "GET":
+        form = MyForm()
+        
+        return render(request, "user_add.html", {"form":form})

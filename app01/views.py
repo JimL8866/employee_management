@@ -51,3 +51,43 @@ def dep_edit(request, nid):
     models.Department.objects.filter(id=nid).update(name=dep_name)
     models.Department.objects.filter(name=dep_name).update(id=dep_id)
     return redirect("/dep/list/")
+
+def user_list(request):
+    
+    #get all user_list
+    
+    queryset = models.EmployeeInfo.objects.all()
+    # print(queryset)
+    # for obj in queryset:
+    #     print(obj.id, obj.f_name, obj.l_name,obj.create_time.strftime("%Y-%m-%d"), obj.age, obj.account,obj.get_gender_display(),obj.dep.name)
+    
+    return render(request, "user_list.html", {"queryset":queryset})
+
+def user_add(request):
+
+    if request.method == "GET":
+        
+       context = {
+           
+           "gender_choices" : models.EmployeeInfo.gender_choices,
+           
+           "department" : models.Department.objects.all()
+       }
+        
+       return render(request, "user_add.html", context)
+   
+    #get user data
+    
+    f_name = request.POST.get("f_name")
+    l_name = request.POST.get("l_name")
+    pwd = request.POST.get("pwd")
+    age= request.POST.get("age")
+    gender = request.POST.get("gender")
+    acc = request.POST.get("acc")
+    date = request.POST.get("date")
+    dep = request.POST.get("dep")
+    
+    models.EmployeeInfo.objects.create(f_name=f_name, l_name=l_name,password=pwd, 
+                                       age=age,gender=gender,account=acc, 
+                                       create_time=date,dep_id=dep)
+    return redirect("/user/list")

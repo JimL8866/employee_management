@@ -19,7 +19,14 @@ class EmployeeInfo(models.Model):
     age = models.IntegerField(verbose_name="age of employee")
     account = models.DecimalField(verbose_name="salary balance", max_digits=10, decimal_places=2, default=0)
     create_time = models.DateTimeField(verbose_name="time for account created")
-    dep = models. ForeignKey(to="Department", to_field="id", null=True, blank=True, on_delete=models.SET_NULL)
+    
+    
+    
+    # constraint
+    # to related to table
+    # to_field realted to column
+    # auto create dep_id
+    dep = models.ForeignKey(to="Department", to_field="id", null=True, blank=True, on_delete=models.SET_NULL)
     gender_choices = (
         (1, "male"),
         (2, "female"),  
